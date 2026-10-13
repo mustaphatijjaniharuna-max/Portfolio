@@ -1,0 +1,71 @@
+# Builds the site and publishes it to GitHub Pages.
+#
+# Why a workflow instead of committing `dist/`: the screenshots in
+# `public/screenshots/` are re-captured from the live demos whenever a project's
+# UI changes, and the built output hashes its asset filenames on every build.
+# Committing `dist/` would mean hand-syncing both, which is exactly how a site
+# ends up serving a stale bundle. Building here keeps the deployed site a
+# function of the source, nothing else.
+#
+# One-time setup in the repo: Settings -> Pages -> Source -> "GitHub Actions".
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  # Lets you re-run the deploy from the Actions tab without pushing a commit.
+  workflow_dispatch:
+
+# Least privilege: the deploy needs to read the repo, write the Pages site, and
+# mint the OIDC token Pages uses to verify the deployment came from this run.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Never let two deploys race. `cancel-in-progress: false` means a running
+# deploy finishes rather than being cut off half-published.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          # Matches the local toolchain (Node 24) and satisfies Vite 7, which
+          # needs Node 20.19+ or 22.12+.
+          node-version: 24
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload the built site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

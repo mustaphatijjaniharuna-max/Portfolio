@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Mustapha Tijjani Haruna — I build things for the web</title>
+    <meta
+      name="description"
+      content="Web developer building practical tools — a website builder, a portfolio and resume maker, and a project idea generator."
+    />
+
+    <meta name="theme-color" content="#07090f" />
+
+    <!-- Open Graph / social preview -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Mustapha Tijjani Haruna — I build things for the web" />
+    <meta
+      property="og:description"
+      content="Web developer building practical tools — a website builder, a portfolio and resume maker, and a project idea generator."
+    />
+    <!-- Absolute URL on purpose: social crawlers do not resolve relative
+         paths, so this must be the full deployed address. Vite will not
+         rewrite it either way. -->
+    <meta
+      property="og:image"
+      content="https://mustaphatijjaniharuna-max.github.io/Portfolio/screenshots/pagebuilder.png"
+    />
+    <meta property="og:image:alt" content="Screenshot of the Pagebuilder project" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- No favicon file yet; a data URI keeps the browser from requesting
+         /favicon.ico and logging a 404 on every load. -->
+    <link rel="icon" href="data:," />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+    />
+  </head>
+  <body>
+    <!-- Skip link: the first tab stop, so keyboard users are not forced to
+         tab through the whole nav on every page load. -->
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- The WebGL canvas lives behind everything. It is decorative, so it is
+         aria-hidden and never receives focus. -->
+    <canvas id="scene" aria-hidden="true"></canvas>
+    <div class="scene-fallback" id="scene-fallback" hidden aria-hidden="true"></div>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Main">
+        <a class="nav__brand" href="#top">
+          <span class="nav__brand-mark" aria-hidden="true"></span>
+          <span class="nav__brand-text">Mustapha<span class="nav__brand-dim">.</span></span>
+        </a>
+
+        <button
+          class="nav__toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="nav-menu"
+          aria-label="Open menu"
+        >
+          <span class="nav__toggle-bar" aria-hidden="true"></span>
+          <span class="nav__toggle-bar" aria-hidden="true"></span>
+        </button>
+
+        <ul class="nav__menu" id="nav-menu">
+          <li><a href="#work">Work</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#process">How I Build</a></li>
+          <li><a class="nav__cta" href="#contact">Get in Touch</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main id="main">
+      <!-- ============================= HERO ============================= -->
+      <section class="hero" id="top">
+        <div class="hero__inner">
+          <p class="hero__eyebrow">Mustapha Tijjani Haruna</p>
+          <h1 class="hero__headline">I build things for the web.</h1>
+          <p class="hero__intro">
+            I'm a web developer who likes turning ideas into working products. I build,
+            experiment, test things, and try to make useful ideas real.
+          </p>
+          <div class="hero__actions">
+            <a class="btn btn--primary" href="#work">Explore My Work</a>
+            <a class="btn btn--ghost" href="#contact">Get in Touch</a>
+          </div>
+        </div>
+
+        <p class="hero__hint" aria-hidden="true">
+          <span class="hero__hint-dot"></span> Move your cursor to look around
+        </p>
+      </section>
+
+      <!-- ============================ WORK ============================== -->
+      <section class="section" id="work">
+        <header class="section__head">
+          <p class="section__label">01 — Work</p>
+          <h2 class="section__title">Things I've built</h2>
+          <p class="section__lead">
+            Three projects, each built to solve something I ran into myself. Every one of
+            them is live — open them and try them.
+          </p>
+        </header>
+
+        <div class="projects" id="projects"><!-- rendered by src/projects.js --></div>
+      </section>
+
+      <!-- ============================ ABOUT ============================= -->
+      <section class="section" id="about">
+        <header class="section__head">
+          <p class="section__label">02 — About</p>
+          <h2 class="section__title">A bit about how I work</h2>
+        </header>
+
+        <div class="about">
+          <div class="about__copy">
+            <p>
+              I'm a web developer who enjoys building things and figuring out how to turn
+              ideas into working products.
+            </p>
+            <p>
+              I prefer practical projects over building things just for the sake of it. I
+              like experimenting, learning through building, and finding ways to make
+              technology useful to people.
+            </p>
+            <p>
+              I'm still exploring what I can build next, and this portfolio is a collection
+              of some of the things I've worked on.
+            </p>
+          </div>
+
+          <ul class="about__facts">
+            <li class="fact">
+              <span class="fact__label">Currently</span>
+              <span class="fact__value">Building and refining tools on the web</span>
+            </li>
+            <li class="fact">
+              <span class="fact__label">Working with</span>
+              <span class="fact__value">HTML, CSS, JavaScript, Git</span>
+            </li>
+            <li class="fact">
+              <span class="fact__label">Learning</span>
+              <span class="fact__value">Three.js and 3D on the web</span>
+            </li>
+            <li class="fact">
+              <span class="fact__label">Based in</span>
+              <span class="fact__value">Nigeria</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- ============================ SKILLS ============================ -->
+      <section class="section" id="skills">
+        <header class="section__head">
+          <p class="section__label">03 — Skills</p>
+          <h2 class="section__title">Tools I actually use</h2>
+          <p class="section__lead">
+            Only things I can explain and demonstrate. No percentages — those don't mean
+            much on their own.
+          </p>
+        </header>
+
+        <div class="skills">
+          <article class="skill-group">
+            <h3 class="skill-group__title">Web development</h3>
+            <ul class="tags">
+              <li class="tag">HTML</li>
+              <li class="tag">CSS</li>
+              <li class="tag">JavaScript</li>
+            </ul>
+          </article>
+
+          <article class="skill-group">
+            <h3 class="skill-group__title">Tools</h3>
+            <ul class="tags">
+              <li class="tag">Git &amp; GitHub</li>
+              <li class="tag">VS Code</li>
+              <li class="tag">AI coding tools</li>
+            </ul>
+          </article>
+
+          <article class="skill-group">
+            <h3 class="skill-group__title">Exploring</h3>
+            <ul class="tags">
+              <li class="tag">Three.js</li>
+              <li class="tag">3D web experiences</li>
+              <li class="tag">Performance &amp; deployment</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============================ PROCESS =========================== -->
+      <section class="section" id="process">
+        <header class="section__head">
+          <p class="section__label">04 — How I Build</p>
+          <h2 class="section__title">
+            I don't just want to build things. I want them to be useful.
+          </h2>
+        </header>
+
+        <ol class="process">
+          <li class="step">
+            <span class="step__num">01</span>
+            <h3 class="step__title">Find the problem</h3>
+            <p class="step__text">
+              Look for something people actually struggle with, instead of inventing a
+              problem to justify a product.
+            </p>
+          </li>
+          <li class="step">
+            <span class="step__num">02</span>
+            <h3 class="step__title">Build a working version</h3>
+            <p class="step__text">
+              Start with the simplest version that can demonstrate the idea.
+            </p>
+          </li>
+          <li class="step">
+            <span class="step__num">03</span>
+            <h3 class="step__title">Test it</h3>
+            <p class="step__text">
+              Use the product, check what breaks, and find out whether it makes sense to
+              other people.
+            </p>
+          </li>
+          <li class="step">
+            <span class="step__num">04</span>
+            <h3 class="step__title">Improve it</h3>
+            <p class="step__text">
+              Make changes based on what I learn, instead of adding features just because
+              I can.
+            </p>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ============================ CONTACT =========================== -->
+      <section class="section section--contact" id="contact">
+        <header class="section__head">
+          <p class="section__label">05 — Contact</p>
+          <h2 class="section__title">Got an idea or want to work together?</h2>
+          <p class="section__lead">
+            If you've got a project in mind, want to collaborate, or just want to talk
+            about something I've built, feel free to reach out.
+          </p>
+        </header>
+
+        <div class="contact">
+          <a class="contact__card" href="mailto:mustaphatijjaniharuna@gmail.com" data-contact="email">
+            <span class="contact__label">Email</span>
+            <span class="contact__value">mustaphatijjaniharuna@gmail.com</span>
+          </a>
+          <a
+            class="contact__card"
+            href="https://github.com/mustaphatijjaniharuna-max"
+            data-github
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <span class="contact__label">GitHub</span>
+            <span class="contact__value">mustaphatijjaniharuna-max</span>
+          </a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer__inner">
+        <p class="footer__name">Mustapha Tijjani Haruna</p>
+        <ul class="footer__links">
+          <li>
+            <a
+              href="https://github.com/mustaphatijjaniharuna-max"
+              data-github
+              target="_blank"
+              rel="noopener noreferrer"
+              >GitHub</a
+            >
+          </li>
+          <li><a href="#top">Back to top</a></li>
+        </ul>
+        <p class="footer__copy">&copy; <span id="year">2026</span> Mustapha Tijjani Haruna</p>
+      </div>
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+
+    <!-- The project cards are rendered by JavaScript. Without it the visitor
+         would see an empty "Things I've built" section, so give them the live
+         links directly instead. -->
+    <noscript>
+      <div
+        style="
+          max-width: 1140px;
+          margin: 0 auto;
+          padding: 24px;
+          border: 1px solid #2a3549;
+          border-radius: 14px;
+          color: #98a3b8;
+        "
+      >
+        <p style="margin-bottom: 12px; color: #e8ecf4">
+          The project cards need JavaScript to load. The demos themselves are
+          here:
+        </p>
+        <ul style="list-style: disc; padding-left: 20px; display: grid; gap: 8px">
+          <li>
+            <a
+              style="color: #8fb6ff"
+              href="https://mustaphatijjaniharuna-max.github.io/Pagebuilder/"
+              >Pagebuilder</a
+            >
+          </li>
+          <li>
+            <a
+              style="color: #8fb6ff"
+              href="https://mustaphatijjaniharuna-max.github.io/craftfolio/"
+              >Craftfolio</a
+            >
+          </li>
+          <li>
+            <a
+              style="color: #8fb6ff"
+              href="https://mustaphatijjaniharuna-max.github.io/Idea-box/"
+              >Idea Box</a
+            >
+          </li>
+        </ul>
+      </div>
+    </noscript>
+  </body>
+</html>
