@@ -17,7 +17,7 @@ _Last updated: 2026-10-13_
 | 1. Foundation (Vite, HTML, nav, sections, responsive, cards) | ✅ Done |
 | 2. Content (hero, 3 projects, about, skills, how I build, contact, footer) | ✅ Done |
 | 3. 3D (Three.js scene, lighting, camera, animation, interactions) | ✅ Done |
-| 4. Polish (perf, mobile, a11y, links, build, deploy) | 🟡 Everything except the actual publish — build verified, deploy workflow added, nothing pushed yet |
+| 4. Polish (perf, mobile, a11y, links, build, deploy) | 🟡 Almost there — build verified, deploy workflow added, repo URLs verified 200, git found at `C:\Program Files\Git\cmd\git.exe`. Remaining: first commit + push to `main` + set Pages source. |
 
 ### Blocker log
 - ~~**Node.js 18.16.1 installed; Playwright/browser-automation needs Node 20+.**~~
@@ -43,15 +43,11 @@ _Last updated: 2026-10-13_
   Content-Type. To QA the built site, serve `dist/` directly:
   `node scripts/qa-static-server.mjs` (port 4300), then browse
   `http://localhost:4300/Portfolio/`.
-- **`git` is not installed on this machine, and the network is blocking the
-  downloads that would fix it.** `winget install Git.Git` hangs with no child
-  installer process (it needs a UAC prompt that is not being shown), and both
-  `github.com/.../releases/...` and `git-scm.com/download/win` fail with
-  `curl: (52) Empty reply from server`. `git-scm.com` itself loads, so it is the
-  release CDN that is blocked. **Install Git manually** (or via GitHub Desktop,
-  which bundles its own) before the push step below can happen. The VS Code
-  **GitHub Actions** extension is installed, but it only edits workflows — it
-  does not replace the Git CLI.
+- ~~**`git` is not installed on this machine.**~~ **RESOLVED** — Git *is* present
+  at `C:\Program Files\Git\cmd\git.exe`; it is simply not on `PATH`, so the bare
+  `git` command fails. Call it by full path, or add that directory to `PATH`.
+  The VS Code **GitHub Actions** extension is installed, but it only edits
+  workflows — it does not replace the Git CLI.
 
 ### QA — what was actually checked (2026-10-13)
 
@@ -97,10 +93,22 @@ Run order: `npm run build` → `npm run qa:serve` → then point `browser.mjs` a
 
 ### Remaining before this is finished
 1. `git init` + first commit (the repo has **no git history yet** — nothing is
-   committed, so the Pages workflow cannot have run).
-2. Push to `main` and set Settings → Pages → Source → **GitHub Actions**.
+   committed, so the Pages workflow cannot have run). Note: `git` lives at
+   `C:\Program Files\Git\cmd\git.exe` and is not on `PATH`.
+2. Add the `origin` remote (none configured yet) and push to `main`, then set
+   Settings → Pages → Source → **GitHub Actions**.
 3. Confirm the deployed URL loads: https://mustaphatijjaniharuna-max.github.io/Portfolio/
 4. Confirm the display name **Mustapha Tijjani Haruna** is correct (section 18).
+
+### Content change requests (2026-10-14)
+- **Python added** to the skills list — `src/data.js` (Web development row) and
+  the About “Working with” fact in `index.html`.
+- **“Based in Nigeria” removed** — the About facts no longer state a location.
+  Verified: `Nigeria` appears nowhere in source or `dist/`.
+- **Blackbox AI VS Code extension installed** — `blackboxapp.blackbox@2.8.53`
+  (pulled as a VSIX from the Marketplace CDN and registered in
+  `~/.vscode/extensions`), so the CLI Marketplace lookup being unavailable is no
+  longer a blocker for that request.
 
 ### Key facts about the environment
 - Project root: `c:\Users\NSSEC_FIN&ACCTS(HOD)\Desktop\Portfolio`

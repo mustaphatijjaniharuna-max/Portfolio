@@ -132,7 +132,7 @@ export const projects = [
 export const skills = [
   {
     title: 'Web development',
-    items: ['HTML', 'CSS', 'JavaScript'],
+    items: ['HTML', 'CSS', 'JavaScript', 'Python'],
   },
   {
     title: 'Tools',
